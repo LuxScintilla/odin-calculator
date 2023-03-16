@@ -12,13 +12,15 @@ const dotButton = document.querySelector(".dot");
 let memory = {};
 let clicked = false;
 
+let fields;
+let newFields;
+let firstNumber;
+let secondNumber;
+let seperator;
+let operator;
+
 function inputDisplay() {
     inputBox.textContent += this.dataset.value;
-    if(this.dataset.value == "+") {
-        for(let button of operatorButtons) {
-            button.removeEventListener("click", inputDisplay)
-        }
-    }
 }
 
 for(let button of numberButtons) {
@@ -26,43 +28,70 @@ for(let button of numberButtons) {
 }
 
 for(let button of operatorButtons) {
-    button.addEventListener("click", inputDisplay)
+    button.addEventListener("click", function() {
+        inputBox.textContent += this.dataset.value;
+    });
+}
+
+function checkInput() {
+
+    fields = inputBox.textContent.split(/[.\*+-/_]/);
+
+    console.log(fields);
+
+    firstNumber = parseFloat(fields[0]);
+    secondNumber = parseFloat(fields[1]);
+
+    operator = inputBox.textContent.slice((fields[0].length), (fields[0].length + 1));
+    console.log(operator);
 }
 
 equalsButton.addEventListener("click", function() {
 
-    let fields = inputBox.textContent.split("+" || "-" || "*" || "/");
+    checkInput()
+    console.log(inputBox.textContent);
 
-    memory.firstNumber = fields[0];
-    memory.secondNumber = fields[1];
+    outputBox.textContent = operate(operator, firstNumber, secondNumber);
+});
 
-    memory.operator = inputBox.textContent.slice((fields[0].length), (fields[0].length + 1));
+clearButton.addEventListener("click", function() {
 
-    console.log(memory);
+    inputBox.textContent = "";
+    outputBox.textContent = "0";
 
-    for(let button of operatorButtons) {
-        button.addEventListener("click", inputDisplay)
-    }
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+});
+
+backspaceButton.addEventListener("click", function() {
+    let inputArray = inputBox.textContent.split("");
+    inputArray.pop();
+    inputBox.textContent = inputArray.join("");
 });
 
 function add(firstNumber, secondNumber) {
+    console.log(firstNumber + secondNumber);
     return firstNumber + secondNumber;
 }
 
 function subtract(firstNumber, secondNumber) {
+    console.log(firstNumber - secondNumber);
     return firstNumber - secondNumber;
 }
 
 function multiply(firstNumber, secondNumber) {
+    console.log(firstNumber * secondNumber);
     return firstNumber * secondNumber;
 }
 
 function divide(firstNumber, secondNumber) {
+    console.log(firstNumber / secondNumber);
     return firstNumber / secondNumber;
 }
 
 function operate(operator, firstNumber, secondNumber) {
-    if(operator == "+" ) {
+    if(operator == "+") {
         return add(firstNumber, secondNumber)
     } else if(operator == "-") {
         return subtract(firstNumber, secondNumber)

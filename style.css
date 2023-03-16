@@ -75,11 +75,11 @@ body {
     border-radius: 10px;
     box-shadow: 3px 3px 8px #aaaaaa,
                 -3px -3px 8px #eeeeee;
-    transition: 0.3s ease;
+    transition: 0.2s ease;
 }
 
 .buttons.number:hover {
-    background: #a45fda;
+    background: #c39fdd;
     scale: 0.95;
 }
 
@@ -88,12 +88,12 @@ body {
 }
 
 .buttons.operator:hover {
-    background: #5d9789;
+    background: #76a89a;
     scale: 0.95;
 }
 
 .buttons.dot:hover {
-    background: #b393cc;
+    background: #d2c1df;
     scale: 0.95;
 }
 
@@ -102,7 +102,7 @@ body {
 }
 
 .buttons.equals:hover {
-    background: #db8746;
+    background: #e09053;
     scale: 0.95;
 }
 
@@ -111,7 +111,7 @@ body {
 }
 
 .buttons.clear:hover {
-    background: #84B1A6;
+    background: #9abeb5;
     scale: 0.95;
 }
 
@@ -120,7 +120,7 @@ body {
 }
 
 .buttons.backspace:hover {
-    background: #84B1A6;
+    background: #aaccc4;
     scale: 0.95;
 }
 
