@@ -10,10 +10,8 @@ const operatorButtons = document.querySelectorAll(".operator")
 const dotButton = document.querySelector(".dot");
 
 let memory = {};
-let clicked = false;
 
 let fields;
-let newFields;
 let firstNumber;
 let secondNumber;
 let seperator;
@@ -27,9 +25,18 @@ for(let button of numberButtons) {
     button.addEventListener("click", inputDisplay)
 }
 
+let clicked = 0;
 for(let button of operatorButtons) {
     button.addEventListener("click", function() {
         inputBox.textContent += this.dataset.value;
+        clicked++
+
+        if(clicked >= 2) {
+            checkInput()
+            inputBox.textContent += this.dataset.value;
+            outputBox.textContent = operate(operator, firstNumber, secondNumber);
+        }
+
     });
 }
 
@@ -44,14 +51,16 @@ function checkInput() {
 
     operator = inputBox.textContent.slice((fields[0].length), (fields[0].length + 1));
     console.log(operator);
+    inputBox.textContent = operate(operator, firstNumber, secondNumber);
 }
 
 equalsButton.addEventListener("click", function() {
 
     checkInput()
-    console.log(inputBox.textContent);
 
     outputBox.textContent = operate(operator, firstNumber, secondNumber);
+
+    inputBox.textContent = outputBox.textContent;
 });
 
 clearButton.addEventListener("click", function() {
@@ -62,6 +71,7 @@ clearButton.addEventListener("click", function() {
     firstNumber = "";
     secondNumber = "";
     operator = "";
+    clicked = 0;
 });
 
 backspaceButton.addEventListener("click", function() {
@@ -71,22 +81,18 @@ backspaceButton.addEventListener("click", function() {
 });
 
 function add(firstNumber, secondNumber) {
-    console.log(firstNumber + secondNumber);
     return firstNumber + secondNumber;
 }
 
 function subtract(firstNumber, secondNumber) {
-    console.log(firstNumber - secondNumber);
     return firstNumber - secondNumber;
 }
 
 function multiply(firstNumber, secondNumber) {
-    console.log(firstNumber * secondNumber);
     return firstNumber * secondNumber;
 }
 
 function divide(firstNumber, secondNumber) {
-    console.log(firstNumber / secondNumber);
     return firstNumber / secondNumber;
 }
 
