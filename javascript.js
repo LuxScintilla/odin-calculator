@@ -87,8 +87,10 @@ function calculateInput() {
     if(Math.sign(outputBox.textContent) == -1) {
 
         fields = inputBox.textContent.split(regex);
+        fields.shift();
+        fields[0] = "-" + fields[0];
 
-        //FIND A WAY TO FIX NEGATIVES!!!
+        console.log(fields);
 
         firstNumber = parseFloat(fields[0]);
         secondNumber = parseFloat(fields[1]);
