@@ -18,6 +18,20 @@ let seperator;
 let operator;
 let sum;
 
+let max = 30;
+function checkCharCount() {
+    if(inputBox.textContent.length >= max) {
+        for(let button of numberButtons) {
+            button.removeEventListener("click", numberFunction);
+        }
+    }
+    if(inputBox.textContent.length < max) {
+        for(let button of numberButtons) {
+            button.addEventListener("click", numberFunction);
+        }
+    }
+}
+
 function displayInput() {
     inputBox.textContent += this.dataset.value;
 }
@@ -25,6 +39,7 @@ function displayInput() {
 //NUMBER BUTTONS-------------------------------------
 let numberClicked = false;
 function numberFunction() {
+    checkCharCount()
     inputBox.textContent += this.dataset.value;
     numberClicked = true;
 }
@@ -161,6 +176,13 @@ clearButton.addEventListener("click", function() {
 let pop;
 let poppedArray = [];
 backspaceButton.addEventListener("click", function() {
+
+    if(inputBox.textContent.length < max) {
+        for(let button of numberButtons) {
+            button.addEventListener("click", numberFunction);
+        }
+    }
+
     let inputArray = inputBox.textContent.split("");
     pop = inputBox.textContent.slice(-1);
     poppedArray.push(pop);
