@@ -1,4 +1,4 @@
-![Header](./github-todo-banner.jpg)
+![Header](./github-calculator-banner.jpg)
 
 # Calculator
 
